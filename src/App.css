@@ -1,0 +1,12 @@
+
+.footer{
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    min-height: 200px;
+    margin: 0;
+}
+
+.custom-table {
+    border-radius: 100px; /* Adjust the value as needed */
+  }
