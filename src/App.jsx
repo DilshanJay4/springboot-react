@@ -12,7 +12,7 @@ import Home from './pages/Home';
 const App = () => {
   return (
     <Router>
-      <div>
+      <div style={{ height: '100vh' }}>
         <SideBar/>
         <div className="container">
           <Routes>

@@ -3,6 +3,8 @@ import requestService from '../services/RequestService';
 import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const ListRepairRequests = () => {
   const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
@@ -68,6 +70,9 @@ const ListRepairRequests = () => {
                       </button>
                       <button className="btn btn-danger" onClick={() => deleteHandler(request.requestId)} style={{ marginLeft: '7px' }} >
                         <i className="fa fa-trash"></i>
+                      </button>
+                      <button className="btn btn-info" onClick={{}} style={{ marginLeft: '7px' }} >
+                        <i className="fa fa-envelope"></i>
                       </button>
                     </div>
                   </td>
