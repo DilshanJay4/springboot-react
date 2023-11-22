@@ -4,7 +4,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const ListRepairRequests = () => {
   const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
@@ -25,12 +24,44 @@ const ListRepairRequests = () => {
       });
   }
 
+
+// Send Mail 
+  const sendEmail = (emailAddress, name, deviceBrand, deviceType) => {
+
+    const emailContent = `Dear ${name},<br><br>
+    We're pleased to inform you that your ${deviceType} has been successfully repaired and is now ready for collection.<br><br>
+    Details:<br>
+    Item Name: ${deviceBrand}<br>
+    Repair Status: Successfully Repaired<br>
+    Ready for Pickup: Yes<br><br>
+    Please visit our service center during our business hours to collect your repaired ${deviceType}. Our team will be happy to assist you !!<br>
+    If you have any questions or concerns, feel free to reply to this email or contact our customer service at 119.<br><br>
+    Thank you for choosing DigitX Solutions for your repair needs. We appreciate your business.<br><br>
+    Best regards,`;
+
+    requestService.sendMailRequest({
+      to: emailAddress,
+      subject: 'RG: Your Computer Item Repair Request',
+      text: emailContent 
+    })
+    
+    .then(() => {
+      alert('The Email has been sent Successfully !!');
+    })
+    .catch((error) => {
+      console.error('Error Sending Mail !!' + error);
+    });
+
+  }
+
+
   useEffect(() => {
     requestService.getRequests()
       .then((res) => {
         setRequests(res.data);
       });
   }, []);
+
 
   return (
     <div>
@@ -71,7 +102,7 @@ const ListRepairRequests = () => {
                       <button className="btn btn-danger" onClick={() => deleteHandler(request.requestId)} style={{ marginLeft: '7px' }} >
                         <i className="fa fa-trash"></i>
                       </button>
-                      <button className="btn btn-info" onClick={{}} style={{ marginLeft: '7px' }} >
+                      <button className="btn btn-info" onClick={() => sendEmail(request.userEmail,request.userName,request.deviceBrandModel,request.deviceType)} style={{ marginLeft: '7px' }} >
                         <i className="fa fa-envelope"></i>
                       </button>
                     </div>

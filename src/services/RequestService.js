@@ -24,6 +24,10 @@ class RequestService {
         return axios.delete(RQUESTS_BASE_URL + '/' + requestID);
     }
 
+    sendMailRequest(mail){
+        return axios.post(RQUESTS_BASE_URL + '/send', mail);
+    }
+
 }
 
 const requestService = new RequestService();
