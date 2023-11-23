@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import requestService from '../services/RequestService';
 import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 
 const ListRepairRequests = () => {
@@ -12,6 +14,7 @@ const ListRepairRequests = () => {
     navigate(`/updaterequest/${id}`);
   };
 
+  // Delete Request
   const deleteHandler = (id) => {
     requestService.deleteRequest(id)
       .then(() => {
@@ -55,6 +58,23 @@ const ListRepairRequests = () => {
   }
 
 
+  //Report Generation
+  const handleGenerate = () => {
+    const doc = new jsPDF();
+
+    doc.text("Repair Request Report", 20,8);
+    // Create a table with autotable
+    doc.autoTable({
+        head: [
+            ["User ID", "User Name", "User Email", "Device Type" ,"Device Brand", "Issue Description", "Request Date", "Status"]
+        ],
+        body: requests.map(request => [request.userId, request.userName, request.userEmail, request.deviceType, request.deviceBrandModel, request.issueDescription, request.requestDate, request.status]),
+    });
+
+    doc.save('requestReport.pdf');
+}
+
+
   useEffect(() => {
     requestService.getRequests()
       .then((res) => {
@@ -80,7 +100,7 @@ const ListRepairRequests = () => {
                 <th>Issue Description</th>
                 <th>Request Date</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <th className='pr-2'>Actions <button type="button" className="btn btn-secondary m-2" onClick={() => handleGenerate()}><i className="fa fa-print"></i></button></th>
               </tr>
             </thead>
             <tbody>
