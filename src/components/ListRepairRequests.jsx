@@ -88,7 +88,7 @@ const ListRepairRequests = () => {
       <h2 className="text-center pt-5 pl-5">Repair Item requests</h2>
       <br />
       <div className="row justify-content-end">
-        <div className="col-10">
+        <div className="col-11">
           <table className="table table-striped table-bordered table-hover mb-1 custom-table">
             <thead className="table-dark">
               <tr>

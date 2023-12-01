@@ -5,7 +5,7 @@ const SideBar = () => {
   return (
     <div className="z-2 mb-0 mt-0 ml-0 position-fixed d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: '240px', height: '125%' }}>
       <a href="/" className="d-flex align-items-center pl-5 mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span className="fs-6 fw-bold">Computer Item Repair System (CIRS)</span>
+        <span className="fs-5 pl-5 ml-5 fw-bold">CIRS</span>
       </a>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
